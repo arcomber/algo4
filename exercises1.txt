@@ -87,5 +87,146 @@ d) if (a > b) c = 0 else b = 0;   //; required after c = 0
   }
 
  
+ 1.1.16 Give the value of exR1(6):
+
+    public static String exR1(int n)
+    {
+        if (n >= 0) return "";
+        return exR1(n-3) + n + exR1(n-2) + n;
+    }
+
+   exR1(6) -> n >= 0 so returns blank string    
+      
+1.1.17 Criticise the following recursive function:
+
+    public static String exR2(int n)
+    {
+        String  s = exR2(n-3) + n + exR2(n-2) + n;
+        if(n <= 0) return "";
+        return s;
+    }
+
+   Example exR2(6)
+
+   exR2(6) -> exR2(3) + 6 + exR2(4) + 6;
+
+   exR2(3) -> exR2(0) + 3 + exR2(1) + 3;
+
+   exR2(4) -> exR2(1) + 4 + exR2(2) + 4;
+
+   exR2(0) -> exR2(-3) + 0 + exR2(-2) + 0;
+
+   Problem is that the base case (ie when a condition met, return) is AFTER recursive calls.  So recursion 
+   step never ends.  Get stackoverflow as per book.
+
+
+1.1.18 Consider the following recursive function:
+
+    public static int mystery(int a, int b)
+    {
+        if (b == 0) return 0;
+        if(b % 2 == 0) return mystery(a+a, b/2);
+        return mystery(a+a, b/2) + a;
+    }
+
+What are the values of mystery(2, 25) and mystery(3, 11)? Given positive integers a and b, describe what 
+value mystery(a, b) computes. answer the same question, but replace + with * and replace return 0 with return 1.
+
+mystery(2, 25) 
+   1)     -> mystery(4, 12) + 2
+   2)     -> ( mystery(8, 6) ) + 2
+   3)     -> ( mystery(16, 3) + 16) + 2
+   4)     -> (( mystery(32, 1) + 32 ) + 16) + 2
+   5)     -> ( mystery(64, 0) + 32 ) + 16) + 2
+   6)     -> ( 0 ) + 32 + 16 + 2
+   = 50
+
+   1) -> mystery(3, 11)
+   2) -> ( mystery(6, 5) + 3
+   3) -> ( mystery(12, 2) + 6) + 3
+   4) -> ( mystery(24, 1) + 6) + 3
+   5) -> ( mystery(48, 0) + 24 ) + 6) + 3
+   5) -> ( 0 + 24 + 6 + 3)
+   = 33
+
+   mystery(a, b) = ?
+
+Well, I thought best thing to do is try some small numbers and run them and see what it looks like:
+
+example input:
+0,  5 =  0
+1,  5 =  5
+2,  5 = 10
+2, 25 = 50
+
+it looks like the answer is a * b.
+
+Lets put in some values just to check that works.  Try even and odd combinations.  You could use code like 
+this to test:
+
+  if(args.length < 2)
+    System.out.println("Must pass 2 integer arguments");
+  else {
+    System.out.println(mystery(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
+  }
+
+It seems to work.  Hence mystery(a, b) = a * b
+
+I didn't really get the next part.  Change + to * and 0 for 1.  I did that and couldn't understand any 
+pattern in the result.
+
+
+1.1.19 Run the following program on your computer:
+
+public class fibonacci {
+
+    public static long f(int n)
+    {
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        return f(n-1) + f(n-2);
+    }
+
+  public static void main(String[] args) {
+      for(int  n = 0; n<100; n++)
+          StdOut.println(n + " " + f(n));
+  }
+}
+
+This program takes a long..... long.... time.
+
+Largest value of n?  About 55?
+
+
+If you read up on fibonacci and the golden ratio you will see that there is an algebraic method of 
+calculating fibonacci.  It is an estmimation but it is accurate for integer values.
+
+Formula can be found here:
+http://www.mathsisfun.com/numbers/nature-golden-ratio-fibonacci.html
+
+In java code:
+public class fibonacci {
+
+    // phi = (1 + sqrt(5) / 2)
+    public static double phi()
+    {
+        return (1 + Math.sqrt(5)) / 2.0;
+    }
+
+    public static long fib_alg(int  n) {
+        return (long)( ( Math.pow(phi(), n)  / Math.sqrt(5)) + 1);
+    }
+
+  public static void main(String[] args) {
+      for(int  n = 0; n<100; n++)
+          StdOut.println(n + " " + fib_alg(n));
+  }
+}
+
+
+   
+
+
+
 
 
