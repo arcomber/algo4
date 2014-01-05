@@ -197,6 +197,48 @@ This program takes a long..... long.... time.
 
 Largest value of n?  About 55?
 
+The question asks for a better implementation which saves computed values in an array.
+
+OK looked this up.  Idea is memoization.  See here:  
+http://en.wikipedia.org/wiki/Memoization
+
+And here for Java code examples: 
+http://en.wikibooks.org/wiki/Algorithm_Implementation/Mathematics/Fibonacci_Number_Program#Java
+
+Essentially, the idea is to 'chache' values in an array.
+
+Doing this very simply with fixed size array:
+
+public class fib_memo {
+
+    static long[] fib = new long[100];
+
+    public static long f(int n)
+    {
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        if(fib[n] == 0) {
+	    fib[n] = f(n-1) + f(n-2);
+        }
+        return fib[n];
+    }
+
+
+  public static void main(String[] args) {
+      for(int  n = 0; n<100; n++)      
+	  StdOut.printf("fib[%4d] = %14d\n", n, f(n));
+  }
+}
+
+To do more professionally, you would need to use a re-sizeable array and keep expanding the array as large n's 
+were required.  But this simple implementation makes operation very quick.  You now do not even notice any 
+delay in printing results.
+
+One other issue is that even the 64 bit long overflows with large fib numbers.  Looks like from fib(93).  
+So better to use Java's bigInteger type for big n.
+
+
+
 
 If you read up on fibonacci and the golden ratio you will see that there is an algebraic method of 
 calculating fibonacci.  It is an estmimation but it is accurate for integer values.
