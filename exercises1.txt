@@ -247,7 +247,15 @@ Formula can be found here:
 http://www.mathsisfun.com/numbers/nature-golden-ratio-fibonacci.html
 
 In java code:
+
 public class fibonacci {
+
+    public static long f(int n)
+    {
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        return f(n-1) + f(n-2);
+    }
 
     // phi = (1 + sqrt(5) / 2)
     public static double phi()
@@ -256,7 +264,7 @@ public class fibonacci {
     }
 
     public static long fib_alg(int  n) {
-        return (long)( ( Math.pow(phi(), n)  / Math.sqrt(5)) + 1);
+        return (long)Math.round(Math.pow(phi(), n)  / Math.sqrt(5.0) );
     }
 
   public static void main(String[] args) {
@@ -265,8 +273,6 @@ public class fibonacci {
   }
 }
 
-
-   
 
 
 
