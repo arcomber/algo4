@@ -274,6 +274,23 @@ public class fibonacci {
 }
 
 
+1.1.20 Write a recursive static method that computes the value of ln(N!)
+
+public class ex_1_1_20 {
+
+    public static long fact(int n)
+    {
+        if (n < 2) return 1;
+        return n * fact(n-1);
+    }
+
+  public static void main(String[] args) {
+      for(int  n = 0; n<20; n++)
+          StdOut.printf("ln(%d!) = %f\n", n, Math.log(fact(n)));
+  }
+}
+
+
 
 
 
