@@ -291,6 +291,54 @@ public class ex_1_1_20 {
 }
 
 
+1.1.21 Write a program that reads in lines from std input with each line 
+containing a name and two integers and then use printf() to print a table 
+with a column of the names, the integers, and the result of dividing the 
+first by the second, accurate to three decimal places. You could use a 
+program like this to tabulate batting averages for baseball players or grades for students.
+
+public class ex_1_1_21 {
+
+public static class Data
+{
+    public Data() {}
+    public Data(double v1, double v2, String s1) { n1 = v1; n2 = v2; s = s1; } 
+    public double n1; 
+    public double n2;  
+    public String s; 
+};
+
+  public static void main(String[] args) {
+	int i = 0;
+	int idx = 0;  // array index  
+	double v1, v2;
+	v1 = v2 = 0;
+	String s;
+
+	Data items[] = new Data[100];  //asumes no more than 100 items
+
+      while(!StdIn.isEmpty()) {
+          switch(i % 3) {
+	    case 0: v1 = StdIn.readFloat(); break;
+            case 1: v2 = StdIn.readInt();   break;
+            case 2:  
+                s =  StdIn.readString(); 
+		items[idx++] = new Data(v1, v2, s);
+               break;
+          }
+          ++i;
+      }
+      
+      StdOut.println("Item\tNum1\tNum2\tdiv");
+      for(int j = 0; j < idx; ++j) {
+          StdOut.printf(  "%s\t%3.3f\t%3.3f\t%3.3f\n", 
+               items[j].s, items[j].n1, items[j].n2, items[j].n1 / items[j].n2);
+      }	
+      StdOut.printf("%d items\n", idx);           
+  }
+}
+
+
 
 
 
