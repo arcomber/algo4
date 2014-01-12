@@ -86,6 +86,52 @@ d) if (a > b) c = 0 else b = 0;   //; required after c = 0
       }
   }
 
+
+1.1.6 - prints fibonacci sequence.
+
+1.1.7 Give the value printed by each of the following code fragments:
+
+a.  
+    double t = 9.0;
+    while(Math.abs(t - 9.0/t) > .001)
+        t = (9.0/t + t) / 2.0;
+    StdOut.printf("%.5f\n", t);
+
+while loop produces:
+5.0
+3.4
+3.02
+converging towards 3.0000000
+
+When run mine produced: 3.00009
+
+b.
+
+int sum = 0;
+for (int i = 1; i < 1000; i++)
+    for(int j = 0; j < 1000; j++)
+        sum++;
+StdOut.println(sum);
+
+should produce 1000 * 1000 (1000 being incremented by 1, 1000 times.
+
+Ah, that was wrong.  Produces 999000.
+
+Ah, because i is from 1 to 999 (excludes 1000) you miss out 1000.  and 999000 + 1000 = 1000000.
+
+Edit for loop to be (int i = 1; i <= 1000; i++)  and get expected 1m. Or better:
+(int i = 0; i < 1000; i++)
+
+c.
+
+int sum = 0;
+for (int i = 1; i < 1000; i++)
+    for(int j = 0; j < 1000; j++)
+        sum++;
+StdOut.println(sum);
+
+
+*** To complete here - somehow missed a load of questions.
  
  1.1.16 Give the value of exR1(6):
 
