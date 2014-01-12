@@ -338,7 +338,67 @@ public static class Data
   }
 }
 
+Improved tidy version:
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+
+public class test {
+
+	public class Data
+	{
+	    public Data() {}
+	    public Data(double v1, double v2, String s1) { n1 = v1; n2 = v2; s = s1; } 
+	    public double n1; 
+	    public double n2;  
+	    public String s; 
+	};
+	
+    LinkedList<Data> getData() {
+	      int i = 0;
+	      double v1, v2;
+	      v1 = v2 = 0;
+	      String s;
+	      LinkedList<Data> list = new LinkedList<Data>();
+		  
+	      Scanner input = new Scanner(System.in);
+		  
+		  while(input.hasNext()) {
+		     switch(i % 3) {
+		 	    case 0: v1 = input.nextFloat(); break;
+	            case 1: v2 = input.nextFloat(); break;
+	           case 2:  
+	                s = input.next();
+	        		list.add(new Data(v1, v2, s));
+	           break;
+	         }
+	         ++i;	            
+		  }
+		  input.close();
+		  return list;
+    }
+    
+    void display_table(LinkedList<Data> list) {
+		System.out.printf("%d items\n", list.size());	
+		System.out.println("Item\tNum1\tNum2\tdiv");
+        Iterator<Data> iter = list.iterator(); 
+          
+        while(iter.hasNext()) {
+        	  Data item = (Data) iter.next();
+        	  System.out.printf(  "%s\t%3.3f\t%3.3f\t%3.3f\n", item.s, item.n1, item.n2, item.n1 / item.n2);
+        }    	
+    }
+	
+	void run() {
+		display_table(getData());
+	}
+	
+	  public static void main(String[] args) {
+		  new test().run();
+	  }
+}
 
 
 
