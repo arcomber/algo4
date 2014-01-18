@@ -240,6 +240,7 @@ array with M rows and N columns.
 
 import java.util.Arrays;
 
+//http://en.wikipedia.org/wiki/Transpose
 public class transpose {
 
     public static void main(String[] args){
