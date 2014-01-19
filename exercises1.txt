@@ -625,5 +625,48 @@ public class test {
 }
 
 
+1.1.22 Write a version of BinarySearch that uses the recursive rank() given on page 25 and traces the method 
+calls.  Each time the recursive method is called, print the argument values lo and hi, indented by the depth 
+of the recursion. hint: Add an argument to the recursive method that keeps track of the depth.
+
+import java.util.Arrays;
+
+public class BinarySearchRec
+{
+    public static int rank(int key, int[] a)
+    {
+        return rank(key, a, 0, a.length - 1, 0); 
+    }
+
+    public static int rank(int key, int[] a, int lo, int hi, int depth)
+    {  // Index of key in a[], if present, is not smaller than lo
+       // and not larger than hi
+	int tmp = depth;
+       while(tmp-- > 0)
+	   StdOut.print(' '); //padding by recursion call depth
+
+	StdOut.printf("key = %d, lo = %d, hi = %d\n", key, lo, hi);
+	if(lo > hi) {
+            StdOut.printf("key = %d not found\n", key);
+            return -1;
+        }
+       int mid = lo + (hi - lo) / 2;
+       if (key < a[mid]) return rank(key, a, lo, mid - 1, ++depth);
+       else if (key > a[mid]) return rank(key, a, mid + 1, hi, ++depth);
+       else return mid;
+    }
+
+    public static void main(String[] args) {
+        int[] whitelist = In.readInts(args[0]);
+        Arrays.sort(whitelist);
+
+        while(!StdIn.isEmpty()) 
+        {  //read key, print if not in whitelist
+            int key = StdIn.readInt();
+            if(rank(key, whitelist) < 0)
+               StdOut.println(key);
+        }
+    }
+}
 
 
