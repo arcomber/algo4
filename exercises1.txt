@@ -287,22 +287,16 @@ arguments and returns an array of length M whose ith entry is the number of time
 appeared in the argument array. If the values in a[] are all between 0 and M-1, the sum of the values 
 in the returned array should be equal to a.length.
 
-
-public static int[] histogram(int[] arr, int M) {
-    //in case not sorted
-    java.util.Arrays.sort(arr);
-    int[] ret = new int[M];
-    for(int i = 0; i < arr.length; ++i) {
-        int tmp = arr[i];
-    	int numcnt = 1;
-    	while(i < arr.length -1 && tmp == arr[i+1]) {
-    	    ++numcnt;
-    	    ++i;
-    	}
-    	ret[tmp] = numcnt;
+   int[] histogram(int[] array, int m) {
+        Arrays.sort(array);
+        int[] ret=new int[m];
+        int i=0;
+        while (i<array.length&&array[i]<m){
+            ret[array[i]]= ++ret[array[i]];
+            i++;
+        }
+        return ret;
     }
-    return ret;
-}
 
 Call it like this:
 
