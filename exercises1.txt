@@ -241,31 +241,14 @@ array with M rows and N columns.
 import java.util.Arrays;
 
 //http://en.wikipedia.org/wiki/Transpose
-public class transpose {
-
-    public static void main(String[] args){
-        int[][] m = { {1,  1,   1,   1},
-                      {2,  4,   8,  16},
-                      {3,  9,  27,  81},
-                      {4, 16,  64, 256},
-                      {5, 25, 125, 625} };
-
-        int[][] ans = new int[m[0].length][m.length];
-
-        for(int rows = 0; rows < m.length; rows++){
-            for(int cols = 0; cols < m[0].length; cols++){
-                ans[cols][rows] = m[rows][cols];
+public static int[][] transposition(int[][] array,int m,int n){
+        int[][] transposed=new int[n][m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                transposed[i][j]=array[j][i];
             }
         }
-        //to print out new array
-        for(int rows = 0; rows < ans.length; rows++){
-            for(int cols = 0; cols < ans[0].length; cols++){
-                System.out.printf("%3d ", ans[rows][cols]);
-            }
-            System.out.print('\n');
-        }
-        System.out.print('\n');
-    }
+        return transposed;
 }
 
 1.1.14 Write a static method lg() that takes an int value N as argument and returns the largest int not 
