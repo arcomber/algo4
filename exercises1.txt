@@ -373,8 +373,7 @@ this to test:
 
 It seems to work.  Hence mystery(a, b) = a * b
 
-I didn't really get the next part.  Change + to * and 0 for 1.  I did that and couldn't understand any 
-pattern in the result.
+If we change any + to * and 0 to 1,  then the function will eventually return a^b.
 
 
 1.1.19 Run the following program on your computer:
